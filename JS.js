@@ -59,11 +59,23 @@ class MenuButtonActions {
     );
   }
 
+// This function manages focus and keyboard navigation for menu items. 
+// It sets the focused item’s `tabIndex` to `0` (making it focusable) and focuses on it. 
+// All other items get a `tabIndex` of `-1`, so they can’t be selected until they are focused again. 
+// This improves keyboard navigation and ensures only one item can be focused at a time.
   setFocusToMenuitem(newMenuitem) {
     this.menuitemNodes.forEach(function (item) {
 // R.G. Here to add the roving tabindex logic  ;)
-    });
-  }
+    if (item === newMenuitem) {
+      item.tabIndex = 0;
+      newMenuitem.focus();
+    }else{
+    item.tabIndex = -1;        
+}
+  });
+}
+  
+  
 
   setFocusToFirstMenuitem() {
     this.setFocusToMenuitem(this.firstMenuitem);
